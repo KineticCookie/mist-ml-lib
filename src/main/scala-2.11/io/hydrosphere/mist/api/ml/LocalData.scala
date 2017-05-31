@@ -25,6 +25,12 @@ class LocalData(private val columnData: List[LocalDataColumn[_]]) {
       yield (for (column <- columnData) yield column.name -> column.data(rowNumber)).toMap
   }
 
+  def toListMap: Map[String, List[Any]] = {
+    columnData.map{col =>
+      col.name -> col.data
+    }.toMap
+  }
+
   override def toString: String = {
     
     def rowSeparator(colSizes: List[Int]): String = {
